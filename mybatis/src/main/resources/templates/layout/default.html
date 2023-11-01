@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+	<div id="wrapper">
+		<!-- 상단 메뉴 시작 -->
+			<!-- /* th:replace="~{논리주소 :: 조각이름}" */ -->
+			<!-- /* "논리주소 : src/main/resources/templates/"(여기까지 디폴트) + 논리주소 + ".html" */ -->
+			<!-- /* 따라서 경로를 입력할 때 앞에 /를 작성하면 안된다 */ -->
+			<div th:replace="~{fragments/header :: headerFragment}"></div>
+		<!-- 상단 메뉴 끝 -->
+		
+		<!-- 왼쪽 메뉴 시작 -->
+		<div th:replace="~{fragments/aside :: asideFragment}"></div>
+		<!-- 왼쪽 메뉴 끝 -->
+		
+		<!-- 콘텐츠 시작 -->
+		<div id="rightcolumn" style="overflow:auto;">
+			<!-- /* 사용자 조각 정의(동적 contents) */ -->
+			<!-- /* layout:fragment="조각의 이름" */ -->
+			<th:block layout:fragment="customContents">
+				
+			</th:block>
+		</div>
+		<!-- 콘텐츠 끝 -->
+		
+		<!-- 하단 시작 -->
+		<div th:replace="~{fragments/footer :: footerFragment}"></div>
+		<!-- 하단 끝 -->
+	</div>
+	<!-- 사용자 지정 javascript -->
+	<th:block layout:fragment="customJs"></th:block>
+</body>
+</html>
